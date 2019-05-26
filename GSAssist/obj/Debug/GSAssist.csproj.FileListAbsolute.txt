@@ -94,3 +94,4 @@ C:\Users\seifs\source\repos\GSAssist\GSAssist\obj\Debug\createTemplateManifests.
 C:\Users\seifs\source\repos\GSAssist\GSAssist\obj\Debug\VSPackage.resources.original
 C:\Users\seifs\source\repos\GSAssist\GSAssist\bin\Debug\Resources\GSAssistIcon.png
 C:\Users\seifs\source\repos\GSAssist\GSAssist\bin\Debug\index.html
+C:\Users\seifs\source\repos\GSAssist\GSAssist\bin\Debug\Resources\GSAssistPackage.ico
