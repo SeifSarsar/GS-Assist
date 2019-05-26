@@ -1,6 +1,6 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
   <Metadata>
-    <Identity Id="GSAssist.11ba9e53-5df1-4ba7-9a85-1a7c4bb597df" Version="1.0" Language="en-US" Publisher="HP Inc." />
+    <Identity Id="GSAssist.11ba9e53-5df1-4ba7-9a85-1a7c4bb597df" Version="1.0" Language="en-US" Publisher="Seif Sarsar" />
     <DisplayName>GS Assist</DisplayName>
     <Description xml:space="preserve">Generates getters and setters automatically in C++ projects. </Description>
     <Icon>Resources\GSAssistIcon.png</Icon>

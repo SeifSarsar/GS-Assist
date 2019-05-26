@@ -91,7 +91,4 @@ C:\Users\seifs\source\repos\GSAssist\GSAssist\obj\Debug\GSAssist.latest.pkgdef
 C:\Users\seifs\source\repos\GSAssist\GSAssist\obj\Debug\extension.vsixmanifest
 C:\Users\seifs\source\repos\GSAssist\GSAssist\obj\Debug\files.json
 C:\Users\seifs\source\repos\GSAssist\GSAssist\obj\Debug\createTemplateManifests.cache
-C:\Users\seifs\source\repos\GSAssist\GSAssist\obj\Debug\VSPackage.resources.original
 C:\Users\seifs\source\repos\GSAssist\GSAssist\bin\Debug\Resources\GSAssistIcon.png
-C:\Users\seifs\source\repos\GSAssist\GSAssist\bin\Debug\index.html
-C:\Users\seifs\source\repos\GSAssist\GSAssist\bin\Debug\Resources\GSAssistPackage.ico
