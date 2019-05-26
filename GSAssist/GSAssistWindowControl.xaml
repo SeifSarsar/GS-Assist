@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="GSAssist.GSAssistWindowControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
+             Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
+             mc:Ignorable="d"
+             Name="MyToolWindow">
+    <ScrollViewer>
+        <Grid Margin="20">
+            <StackPanel>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                    Choose the functions you want to create for each variable.
+                </TextBlock>
+                <StackPanel x:Name="Attributes" Margin="0 10 0 0">
+                    <DockPanel Height="30" Margin="0 5">
+                        <TextBlock FontWeight="Bold" Width="150" VerticalAlignment="Center">File Location:</TextBlock>
+                        <ComboBox ItemsSource="{Binding FileLocations}" MaxWidth="200" MinWidth="75"
+                            SelectedItem="{Binding Path=FileLocation, Mode=TwoWay}" VerticalContentAlignment="Center">
+                        </ComboBox>
+                    </DockPanel>
+                    <ItemsControl ItemsSource="{Binding MemberVariables.Values}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel Height="30" Margin="0 5">
+                                    <TextBlock Width="150" VerticalAlignment="Center">
+                                    <Run Text="{Binding Type}" Foreground="#92CD9C" ></Run>
+                                    <Run Text="{Binding Name}"></Run>
+                                    </TextBlock>
+                                    <ComboBox ItemsSource="{Binding FunctionsChoices}" MaxWidth="200"
+                                            SelectedItem="{Binding FunctionsChoice, Mode=TwoWay}" VerticalContentAlignment="Center">
+                                    </ComboBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+                <Button HorizontalAlignment="Left" Height="25" Width="60" Margin="0 5 0 0" Click="Button_Click">Apply</Button>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
