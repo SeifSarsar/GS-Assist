@@ -25,7 +25,7 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <DockPanel Height="30" Margin="0 5">
-                                    <TextBlock Width="150" VerticalAlignment="Center">
+                                    <TextBlock Width="200" VerticalAlignment="Center">
                                     <Run Text="{Binding Type}" Foreground="#92CD9C" ></Run>
                                     <Run Text="{Binding Name}"></Run>
                                     </TextBlock>

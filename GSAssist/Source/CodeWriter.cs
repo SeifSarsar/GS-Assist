@@ -22,7 +22,7 @@ namespace GSAssist
                     newText += WriteSourceSetterFunction(memberVariable) + Environment.NewLine;
                 }
             }
-            editPoint.Insert(newText);
+            editPoint.Insert(Environment.NewLine + newText);
         }
 
         public void WriteInHeaderFile(EditPoint editPoint, Dictionary<string, MemberVariable> memberVariables, bool isWithFunctionDefinition)
@@ -44,7 +44,7 @@ namespace GSAssist
                     newText += Environment.NewLine;
                 }
             }
-            editPoint.Insert(newText);
+            editPoint.Insert("public:" + Environment.NewLine + newText);
         }
 
         public string WriteHeaderGetterFunction(MemberVariable variable, bool isWithFunctionDefinition)

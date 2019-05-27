@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using EnvDTE;
 
@@ -19,7 +20,14 @@ namespace GSAssist
         {
             Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
             Name = codeVariable.Name;
-            Type = codeVariable.Type.AsFullName;
+            string variableSignature = codeVariable.Prototype[(int)vsCMPrototype.vsCMPrototypeType];
+           
+            //Format Type of variable
+            Type = variableSignature.Substring(0, variableSignature.IndexOf(Name));
+
+            int characterIndexToRemove = Type.LastIndexOf(" ");
+            Type = Type.Remove(characterIndexToRemove, 1);
+          
             FunctionsChoice = FunctionsChoice.Both;
             ClassName = className;
         }

@@ -3,6 +3,7 @@ using System.ComponentModel.Design;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 using EnvDTE;
+using System.Diagnostics;
 
 namespace GSAssist
 {
@@ -79,16 +80,20 @@ namespace GSAssist
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-
             //If Dte service is unavailable or if there is no active document, GS Assist won't be used.
             if (Dte == null)
             {
                 ErrorHandler.ShowMessageBox("GS Assist is unavailable.");
                 return;
             }
-            else if (Dte.ActiveDocument == null)
+            if (Dte.ActiveDocument == null)
             {
                 ErrorHandler.ShowMessageBox("Can not use GS Assist because there is no active header file.");
+                return;
+            }
+            if (Dte.ActiveDocument.Language != "C/C++")
+            {
+                ErrorHandler.ShowMessageBox("Can not use GS Assist with a language different of C++.");
                 return;
             }
             if (Dte.ActiveDocument.Name.Contains(".cpp"))
