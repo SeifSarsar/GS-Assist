@@ -51,11 +51,11 @@ namespace GSAssist
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             
-            string functionName = "get" + char.ToUpper(variable.Name[0]) + variable.Name.Substring(1);
+            string functionName = "get" + char.ToUpper(variable.PartialName[0]) + variable.PartialName.Substring(1);
 
             string functionSignature = "".PadLeft(4) + variable.Type + " " + functionName + "() const";
 
-            string functionDefinition = "return " + variable.Name + ";";
+            string functionDefinition = "return " + variable.FullName + ";";
 
             if (isWithFunctionDefinition)
             {
@@ -71,11 +71,15 @@ namespace GSAssist
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            string functionName = "set" + char.ToUpper(variable.Name[0]) + variable.Name.Substring(1);
+            string functionName = "set" + char.ToUpper(variable.PartialName[0]) + variable.PartialName.Substring(1);
 
-            string functionSignature = "".PadLeft(4) + "void " + functionName + "(" + variable.Type + " " + variable.Name + ")";
+            string functionSignature = "".PadLeft(4) + "void " + functionName + "(" + variable.Type + " " + variable.PartialName + ")";
 
-            string functionDefinition = "this->" + variable.Name + " = " + variable.Name + ";";
+            string functionDefinition =  variable.FullName + " = " + variable.PartialName + ";";
+
+            if (variable.FullName == variable.PartialName)
+                functionDefinition = "this->" + functionDefinition;
+
 
             if (isWithFunctionDefinition)
             {
@@ -91,11 +95,11 @@ namespace GSAssist
         {
             ThreadHelper.ThrowIfNotOnUIThread();
            
-            string functionName = "get" + char.ToUpper(variable.Name[0]) + variable.Name.Substring(1);
+            string functionName = "get" + char.ToUpper(variable.PartialName[0]) + variable.PartialName.Substring(1);
 
             string functionSignature = variable.Type + " " + variable.ClassName + "::" + functionName + "() const";
 
-            string functionDefinition = "return " + variable.Name + ";";
+            string functionDefinition = "return " + variable.FullName + ";";
 
             return functionSignature + Environment.NewLine +
                    "{" + Environment.NewLine +
@@ -106,11 +110,14 @@ namespace GSAssist
         public string WriteSourceSetterFunction(MemberVariable variable)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string functionName = "set" + char.ToUpper(variable.Name[0]) + variable.Name.Substring(1);
+            string functionName = "set" + char.ToUpper(variable.PartialName[0]) + variable.PartialName.Substring(1);
 
-            string functionSignature = "void " + variable.ClassName + "::" + functionName + "(" + variable.Type + " " + variable.Name + ")";
+            string functionSignature = "void " + variable.ClassName + "::" + functionName + "(" + variable.Type + " " + variable.PartialName + ")";
 
-            string functionDefinition = "this->" + variable.Name + " = " + variable.Name + ";";
+            string functionDefinition = variable.FullName + " = " + variable.PartialName + ";";
+
+            if (variable.FullName == variable.PartialName)
+                functionDefinition = "this->" + functionDefinition;
 
             return functionSignature + Environment.NewLine +
                    "{" + Environment.NewLine +

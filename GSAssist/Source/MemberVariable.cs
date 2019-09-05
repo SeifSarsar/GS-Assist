@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using EnvDTE;
 
 namespace GSAssist
@@ -19,11 +20,15 @@ namespace GSAssist
         public MemberVariable(CodeVariable codeVariable, string className)
         {
             Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
-            Name = codeVariable.Name;
+            FullName = codeVariable.Name;
+            
+            //Remove special characters
+            PartialName = Regex.Replace(FullName, "[^a-zA-Z0-9]", "");
+
             string variableSignature = codeVariable.Prototype[(int)vsCMPrototype.vsCMPrototypeType];
            
             //Format Type of variable
-            Type = variableSignature.Substring(0, variableSignature.IndexOf(Name));
+            Type = variableSignature.Substring(0, variableSignature.IndexOf(FullName));
 
             int characterIndexToRemove = Type.LastIndexOf(" ");
             Type = Type.Remove(characterIndexToRemove, 1);
@@ -34,7 +39,9 @@ namespace GSAssist
 
         public string ClassName { get; set; }
 
-        public string Name { get; set; }
+        public string FullName { get; set; }
+
+        public string PartialName { get; set; }
 
         public string Type { get; set; }
 

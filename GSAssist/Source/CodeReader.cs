@@ -42,7 +42,7 @@ namespace GSAssist
                 if (codeElement.Kind == vsCMElement.vsCMElementVariable)
                 {
                     MemberVariable memberVariable = new MemberVariable((codeElement as CodeVariable), codeClass.Name);
-                    memberVariables.Add(memberVariable.Name, memberVariable);
+                    memberVariables.Add(memberVariable.FullName, memberVariable);
                 }
             }
             return memberVariables;

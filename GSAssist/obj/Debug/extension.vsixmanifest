@@ -1,19 +1,18 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
   <Metadata>
-    <Identity Id="GSAssist.11ba9e53-5df1-4ba7-9a85-1a7c4bb597df" Version="1.0" Language="en-US" Publisher="Seif Sarsar" />
+    <Identity Id="GSAssist.11ba9e53-5df1-4ba7-9a85-1a7c4bb597dg" Version="1.0" Language="en-US" Publisher="Seif Sarsar" />
     <DisplayName>GS Assist</DisplayName>
     <Description xml:space="preserve">Generates getters and setters automatically in C++ projects. </Description>
     <Icon>Resources\GSAssistIcon.png</Icon>
   </Metadata>
   <Installation>
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0, 16.0)" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0, 17.0)" />
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" Version="[4.5,)" />
-    <Dependency Id="Microsoft.VisualStudio.MPF.15.0" DisplayName="Visual Studio MPF 15.0" Version="[15.0]" />
   </Dependencies>
   <Prerequisites>
-    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.8.27729.1,)" DisplayName="Visual Studio core editor" />
   </Prerequisites>
   <Assets>
     <Asset Type="Microsoft.VisualStudio.VsPackage" Path="GSAssist.pkgdef" />
