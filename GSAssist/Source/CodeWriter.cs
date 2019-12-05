@@ -33,11 +33,11 @@ namespace GSAssist
             {
                 if (memberVariable.FunctionsChoice == FunctionsChoice.Getter || memberVariable.FunctionsChoice == FunctionsChoice.Both)
                 {
-                    newText += WriteHeaderGetterFunction(memberVariable, isWithFunctionDefinition);
+                    newText += WriteHeaderGetterFunction(memberVariable, isWithFunctionDefinition,editPoint.LineCharOffset);
                 }
                 if (memberVariable.FunctionsChoice == FunctionsChoice.Setter || memberVariable.FunctionsChoice == FunctionsChoice.Both)
                 {
-                    newText += WriteHeaderSetterFunction(memberVariable, isWithFunctionDefinition);
+                    newText += WriteHeaderSetterFunction(memberVariable, isWithFunctionDefinition, editPoint.LineCharOffset);
                 }
                 if (memberVariable.FunctionsChoice != FunctionsChoice.None)
                 {
@@ -47,13 +47,13 @@ namespace GSAssist
             editPoint.Insert("public:" + Environment.NewLine + newText);
         }
 
-        public string WriteHeaderGetterFunction(MemberVariable variable, bool isWithFunctionDefinition)
+        public string WriteHeaderGetterFunction(MemberVariable variable, bool isWithFunctionDefinition, int offset)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             
             string functionName = "get" + char.ToUpper(variable.PartialName[0]) + variable.PartialName.Substring(1);
 
-            string functionSignature = "".PadLeft(4) + variable.Type + " " + functionName + "() const";
+            string functionSignature = "".PadLeft(4 * offset) + variable.Type + " " + functionName + "() const";
 
             string functionDefinition = "return " + variable.FullName + ";";
 
@@ -67,13 +67,13 @@ namespace GSAssist
             }
         }
 
-        public string WriteHeaderSetterFunction(MemberVariable variable, bool isWithFunctionDefinition)
+        public string WriteHeaderSetterFunction(MemberVariable variable, bool isWithFunctionDefinition, int offset)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
             string functionName = "set" + char.ToUpper(variable.PartialName[0]) + variable.PartialName.Substring(1);
 
-            string functionSignature = "".PadLeft(4) + "void " + functionName + "(" + variable.Type + " " + variable.PartialName + ")";
+            string functionSignature = "".PadLeft(4*offset) + "void " + functionName + "(" + variable.Type + " " + variable.PartialName + ")";
 
             string functionDefinition =  variable.FullName + " = " + variable.PartialName + ";";
 

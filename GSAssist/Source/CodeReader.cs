@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
-
+using System.Diagnostics;
 
 namespace GSAssist
 {
@@ -19,15 +19,35 @@ namespace GSAssist
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             CodeElements fileCodeModel = activeDocument.FileCodeModel.CodeElements;
-            foreach (CodeElement codeElement in fileCodeModel)
+            TextSelection textSelection = Dte.ActiveDocument.Selection as TextSelection;
+            VirtualPoint point = textSelection.ActivePoint;
+            CodeElement codeElement = point.CodeElement[vsCMElement.vsCMElementClass];
+
+            if (codeElement != null)
             {
                 if (codeElement.Kind == vsCMElement.vsCMElementClass) //verify if it's a class
                 {
                     return codeElement as CodeClass;
                 }
+                else if (codeElement.Kind == vsCMElement.vsCMElementVariable)
+                {
+                    CodeVariable codeVariable = codeElement as CodeVariable;
+                    codeElement = codeVariable.Parent as CodeElement;
+                    return codeElement as CodeClass;
+
+                }
+                else if (codeElement.Kind == vsCMElement.vsCMElementFunction)
+                {
+                    CodeFunction codeFunction = codeElement as CodeFunction;
+                    codeElement = codeFunction.Parent as CodeElement;
+                    return codeElement as CodeClass;
+
+                }  
             }
-            ErrorHandler.ShowMessageBox("Can not find a class in the header file.");
+            
+            ErrorHandler.ShowMessageBox("Please select a class element.");
             return null;
+           
         }
 
         //Gets the variables in the class
